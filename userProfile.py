@@ -1,6 +1,12 @@
 import os
 import json
+from pathlib import Path
 from datetime import datetime
+
+# Store user profiles in data/users/ relative to this file
+_USERS_DIR = Path(__file__).parent / "data" / "users"
+_USERS_DIR.mkdir(parents=True, exist_ok=True)
+
 
 class UserProfile:
     """Track user performance and capabilities"""
@@ -61,10 +67,11 @@ class UserProfile:
         }
     
     def save(self):
-        """Save profile to file"""
-        with open(f"user_profile_{self.user_id}.json", "w", encoding="utf-8") as f:
+        """Save profile to data/users/ directory."""
+        path = _USERS_DIR / f"user_profile_{self.user_id}.json"
+        with open(path, "w", encoding="utf-8") as f:
             json.dump(self.__dict__, f, indent=2)
-    
+
     def _update_skill_level(self, correct, difficulty, time_taken, confidence):
         """Update skill level using Elo-like rating system"""
         # Difficulty multipliers
@@ -92,12 +99,23 @@ class UserProfile:
     
     @classmethod
     def load(cls, user_id: str):
-        """Load profile from file"""
-        try:
-            with open(f"user_profile_{user_id}.json", "r", encoding="utf-8") as f:
-                data = json.load(f)
+        """Load profile from data/users/; fall back to root for legacy files."""
+        # New location
+        new_path = _USERS_DIR / f"user_profile_{user_id}.json"
+        # Legacy location (root) — migrate automatically on first load
+        legacy_path = Path(__file__).parent / f"user_profile_{user_id}.json"
+
+        path = new_path if new_path.exists() else (legacy_path if legacy_path.exists() else None)
+        if path:
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
                 profile = cls(user_id)
                 profile.__dict__.update(data)
+                # Migrate legacy file to new location automatically
+                if path == legacy_path:
+                    profile.save()
                 return profile
-        except FileNotFoundError:
-            return cls(user_id)
+            except Exception:
+                pass
+        return cls(user_id)

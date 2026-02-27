@@ -1,10 +1,35 @@
+# ── Core Framework ──
 crewai>=0.28.0
 crewai-tools>=0.2.0
 langchain>=0.1.0
 langchain-openai>=0.0.5
+langchain-core>=0.1.0
+
+# ── PDF Processing ──
 PyPDF2>=3.0.0
+PyCryptodome>=3.18.0
+pdfplumber>=0.10.0          # Table extraction
+pymupdf>=1.23.0             # Image extraction from PDF (fitz)
+pdf2image>=1.17.0           # Render PDF pages as images for OCR
+
+# ── OCR ──
+pytesseract>=0.3.10         # OCR engine wrapper (needs Tesseract installed on system)
+easyocr>=1.7.0              # Fallback OCR engine (deep learning, no system dep needed)
+
+# ── Image handling ──
+Pillow>=10.0.0              # Image open/convert/save
+
+# ── Vector Database ──
+chromadb>=0.4.0             # Local persistent vector DB
+
+# ── Embeddings ──
+sentence-transformers>=2.4.0  # Local embeddings (all-MiniLM-L6-v2)
+
+# ── Document Parsing ──
 python-docx>=1.0.0
 python-dotenv>=1.0.0
+
+# ── ML & NLP utilities ──
 nltk>=3.8.1
-sentence-transformers>=2.4.0
 scikit-learn>=1.2.2
+numpy>=1.24.0
