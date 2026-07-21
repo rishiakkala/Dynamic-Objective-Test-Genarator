@@ -1,0 +1,50 @@
+# Coding Conventions Analysis for `rishiakkala/Dynamic-Objective-Test-Genarator`
+
+This analysis covers the coding conventions used in the repository based on the provided file paths and code samples. The repository uses multiple languages, including TypeScript, Python, PowerShell, CSS, and JavaScript.
+
+## File Naming Conventions
+
+- **Python Files**: Use `snake_case` for file names, e.g., `backend.py`, `evaluation_metrics.py`, `userProfile.py`.
+- **TypeScript and JavaScript Files**: Use `PascalCase` for component files, e.g., `Navbar.tsx`, and `camelCase` for utility files, e.g., `api.ts`.
+- **Configuration Files**: Use lowercase with extensions, e.g., `.env`, `.gitignore`, `package.json`.
+- **Directories**: Use lowercase for directory names, e.g., `frontend`, `docs`.
+
+## Code Organization
+
+- **Python**: The code is organized into modules with specific responsibilities, e.g., `backend.py` for FastAPI app, `Agents.py` for AI agent definitions.
+- **Frontend**: The Next.js app is organized into directories for pages (`/app`) and components (`/components`), following the typical Next.js structure.
+- **Documentation**: Stored in the `docs` directory, with markdown files for text documentation and Word documents for detailed guides.
+
+## Error Handling
+
+- **Python**: Utilizes try-except blocks for error handling, as seen in the `restore_sessions_from_disk` function in `backend.py`, which logs warnings when sessions cannot be restored.
+- **FastAPI**: Uses `HTTPException` for handling HTTP errors.
+
+## Validation
+
+- **Python**: Uses Pydantic models for request validation in FastAPI, e.g., `GenerateRequest` and `TopicGenerateRequest` in `backend.py`.
+- **TypeScript**: Type definitions are used to ensure type safety, although specific validation logic is not visible in the provided samples.
+
+## Language-Specific Conventions
+
+- **Python**: 
+  - Uses type hints for function signatures.
+  - Follows PEP 8 for naming conventions and code structure.
+  - Utilizes docstrings for module and function documentation.
+
+- **TypeScript**:
+  - Uses ES6+ features like import/export.
+  - Follows TypeScript conventions for type annotations and interfaces.
+
+## Linting/Formatting Rules
+
+- **Frontend**: The presence of `eslint.config.mjs` suggests the use of ESLint for JavaScript/TypeScript linting, although specific rules are not visible in the provided samples.
+- **Python**: No explicit linting configuration is provided, but adherence to PEP 8 is observed in the code samples.
+
+## Additional Observations
+
+- **Environment Configuration**: Uses `.env` files for environment variables, with a `.env.example` provided for setup guidance.
+- **Version Control**: Uses `.gitignore` files to exclude unnecessary files from version control, e.g., `__pycache__`, `node_modules`, and user data directories.
+- **Documentation**: The `README.md` provides a clear setup guide and project overview, following standard markdown conventions for headings and code blocks.
+
+Overall, the repository follows standard conventions for each language and framework used, with a clear structure and organization that supports maintainability and scalability.
