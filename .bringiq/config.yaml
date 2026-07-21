@@ -1,0 +1,27 @@
+version: 1.0.0
+project:
+  name: Dynamic-Objective-Test-Genarator
+  description: Generated config for rishiakkala/Dynamic-Objective-Test-Genarator
+techStack:
+  languages:
+    - name: TypeScript
+      percentage: 51
+    - name: Python
+      percentage: 48
+    - name: PowerShell
+      percentage: 1
+    - name: CSS
+      percentage: 0
+    - name: JavaScript
+      percentage: 0
+  containerized: false
+  framework: crewai
+  runtime: Python
+  packageManager: pip
+  database: chromadb
+agents:
+  - bug-fixer.agent.yaml
+  - docs-writer.agent.yaml
+skills:
+  - error-handling-guide.md
+generatedAt: '2026-07-21T06:52:51.319Z'
